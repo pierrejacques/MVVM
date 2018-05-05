@@ -144,7 +144,7 @@ function parseHTML () {
             }
         } else {
             text = html.substring(0, textEnd);
-            advance(textEnd)
+            advance(textEnd);
             let expression;
             if (expression = parseText(text)) {
                 currentParent.children.push({
@@ -202,3 +202,36 @@ function processIf (el) {
     }
 }
 
+// 静态优化
+// type = 2: 表达式节点
+// type = 3: 文本节点
+
+function isStatic (node) {
+    if (node.type === 2) {
+        return false
+    }
+    if (node.type === 3) {
+        return true
+    }
+    return (!node.if && !node.for);
+}
+
+
+function markStatic (node) {
+    node.static = isStatic(node);
+    if (node.type === 1) {
+        return node.children.every(child => markStatic(child));
+    }
+    return node.static;
+}
+
+function markStaticRoots (node) {
+    if (node.type === 1 && node.children.length && !(
+        node.children.length === 1 &&
+        node.children[0].type === 3 // 只含有一个文本节点的情况
+    )) {
+        node.staticRoot = true;
+    } else {
+        node.staticRoot = false;
+    }
+}
