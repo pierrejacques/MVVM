@@ -1,0 +1,29 @@
+Arguments: 
+  /Users/jinchenhao/.nvm/versions/node/v8.0.0/bin/node /Users/jinchenhao/.yarn/bin/yarn.js remove cornerstone
+
+PATH: 
+  /Users/jinchenhao/.yarn/bin:/Users/jinchenhao/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/MacGPG2/bin:/Users/jinchenhao/.yarn/bin:/Users/jinchenhao/.config/yarn/global/node_modules/.bin:/Users/jinchenhao/.nvm/versions/node/v8.0.0/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.0.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: No lockfile in this directory. Run `yarn install` to generate one.
+      at new MessageError (/Users/jinchenhao/.yarn/lib/cli.js:186:110)
+      at /Users/jinchenhao/.yarn/lib/cli.js:89389:13
+      at <anonymous>

@@ -226,12 +226,20 @@ function markStatic (node) {
 }
 
 function markStaticRoots (node) {
-    if (node.type === 1 && node.children.length && !(
+    if (node.type === 1) {
+        if (node.static && node.children.length && !(
         node.children.length === 1 &&
-        node.children[0].type === 3 // 只含有一个文本节点的情况
-    )) {
-        node.staticRoot = true;
-    } else {
-        node.staticRoot = false;
+        node.children[0].type === 3
+        )) {
+            node.staticRoot = true;
+            return;
+        } else {
+            node.staticRoot = false;
+        }
     }
+}
+
+function optimize (rootAst) {
+    markStatic(rootAst);
+    markStaticRoots(rootAst);
 }
